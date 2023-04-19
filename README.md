@@ -3,7 +3,7 @@ Using a set of points augmented with values of the quantity that is of interest,
 
 
 ## How to use the code
-To install the package, just use pip. Download the tar.gz archive from the *dist* folder in the repository, for example, into your *C:/* folder. The you can install the package from the archive:
+To install the package, just use pip. Download the *tar.gz* archive from the *dist* folder in the repository, for example, into your *C:/* folder. The you can install the package from the archive:
 ```bash
 pip install C:\#archivename.tar.gz
 ```
@@ -30,7 +30,8 @@ ax.set_aspect('equal')
 plt.show()
 
 ```
-Output:
+
+
 ![Example](./assets/example.png)
 
 
