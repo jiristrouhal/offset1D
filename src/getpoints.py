@@ -2,8 +2,15 @@ from typing import List, Tuple
 import math
 
 
-def _get_points(data:List[Tuple[float,float,float]])->List[Tuple[float,float]]:
+def _get_points(data:List[Tuple[float,float,float]], scale:float=0.0)->List[Tuple[float,float]]:
 	"""data items represent an x and y coordinate and value of some quantity at the x,y coordinates."""
+
+	scaling_factor = 1.0
+	if scale!=0:
+		geom_scale, value_scale = __geometry_and_values_scale(data)
+		if value_scale>0:
+			scaling_factor = scale*geom_scale/value_scale
+
 	graph = list()
 	K = len(data)-1
 	k,l = K,0
@@ -17,16 +24,27 @@ def _get_points(data:List[Tuple[float,float,float]])->List[Tuple[float,float]]:
 		e_old = e
 		e = _e_vector(data[k],data[l])
 		n = _get_normal(e_old,e)
+		scaled_value = data[k][2]*scaling_factor
 		graph.append(
-			(data[k][0]+n[0]*data[k][2], data[k][1]+n[1]*data[k][2])
+			(data[k][0]+n[0]*scaled_value, data[k][1]+n[1]*scaled_value)
 		)
 	e_old = e
 
 	n = _get_normal(e_old,e0)
+	scaled_value = data[K][2]*scaling_factor
 	graph.append(
-		(data[K][0]+n[0]*data[K][2], data[K][1]+n[1]*data[K][2])
+		(data[K][0]+n[0]*scaled_value, data[K][1]+n[1]*scaled_value)
 	)
 	return graph
+
+
+def __geometry_and_values_scale(data:List[Tuple[float,float,float]])->Tuple[float,float]:
+	values = [p[2] for p in data]
+	x = [p[0] for p in data]
+	y = [p[1] for p in data]
+	geom_scale = max(max(x)-min(x), max(y)-min(y))
+	value_scale = max(abs(max(values)),abs(min(values)))
+	return geom_scale, value_scale
 
 
 def _e_vector(pointA:Tuple[float,float,float],pointB:Tuple[float,float,float])->Tuple[float,float]:

@@ -29,6 +29,29 @@ class Test_Creating_Graph_With_Unit_Values_At_Data_Points(unittest.TestCase):
 			self.assertAlmostEqual(graph_points[i][1],expected_graph_points[i][1],delta=1e-10)
 
 
+class Test_Scaling(unittest.TestCase):
+
+	def test_one_to_one_scaling_constant_data_on_00_10_11_01_square_yields_square_with_unit_offset_from_the_first_square(self):
+		some_value = .0235156
+		points = [
+			(0,0,some_value),
+			(1,0,some_value),
+			(1,1,some_value),
+			(0,1,some_value)
+		]
+		expected_graph_points = [
+			(-SIN_PI_FOURTH, -SIN_PI_FOURTH), 
+			(1+SIN_PI_FOURTH, -SIN_PI_FOURTH), 
+			(1+SIN_PI_FOURTH, 1+SIN_PI_FOURTH), 
+			(-SIN_PI_FOURTH, 1+SIN_PI_FOURTH), 
+		]
+		graph_points = graph._get_points(points,scale=1)
+		for i in range(4):
+			self.assertAlmostEqual(graph_points[i][0],expected_graph_points[i][0],delta=1e-10)
+			self.assertAlmostEqual(graph_points[i][1],expected_graph_points[i][1],delta=1e-10)
+		
+
+
 class Test_Single_Normal(unittest.TestCase):
     
 	def test_unit_vectors_in_positive_x_direction(self):
