@@ -2,12 +2,12 @@ from typing import List, Tuple
 import math
 
 
-def surf_and_graph(data:List[Tuple[float,float,float]])->Tuple[Tuple[List[float],List[float]], Tuple[List[float],List[float]]]:
-	graph_points = _get_points(data)
+def surf_and_graph(data:List[Tuple[float,float,float]], scale:float=0.0)->Tuple[Tuple[List[float],List[float]], Tuple[List[float],List[float]]]:
+	graph_points = _get_points(data,scale)
 	return __xy_coords(data), __xy_coords(graph_points)
 
 
-def __xy_coords(data:List[Tuple[float,float,float]]|List[Tuple[float,float]])->Tuple[List[float],List[float]]:
+def __xy_coords(data:List[Tuple[float,float,float]]|List[Tuple[float,float]], scale:float=0.0)->Tuple[List[float],List[float]]:
 	x = [p[0] for p in data]
 	y = [p[1] for p in data]
 	# append the first point to the end to ensure closed curve
