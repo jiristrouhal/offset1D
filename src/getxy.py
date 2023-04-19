@@ -2,7 +2,7 @@ from typing import List, Tuple
 import math
 
 
-def graph(data:List[Tuple[float,float,float]])->Tuple[Tuple[List[float],List[float]], Tuple[List[float],List[float]]]:
+def surf_and_graph(data:List[Tuple[float,float,float]])->Tuple[Tuple[List[float],List[float]], Tuple[List[float],List[float]]]:
 	graph_points = _get_points(data)
 	return __xy_coords(data), __xy_coords(graph_points)
 
