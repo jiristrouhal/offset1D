@@ -3,9 +3,9 @@ Using a set of points augmented with values of the quantity that is of interest,
 
 
 ## How to use the code
-To install the package, just use pip:
+To install the package, just use pip. Download the tar.gz archive from the *dist* folder in the repository, for example, into your *C:/* folder. The you can install the package from the archive:
 ```bash
-pip install offset1d
+pip install C:\#archivename.tar.gz
 ```
 
 A simple example of the use for the package is following:
@@ -31,7 +31,7 @@ plt.show()
 
 ```
 Output:
-![Example](./example.png)
+![Example](./assets/example.png)
 
 
 You want to use the function *surf_and_graph* from the *getxy* module. The order of the points in the list passed to the function matters. The surface is created by connecting the points in the list as ordered in the list. Reversing the order of points does not affect the result.
@@ -64,7 +64,7 @@ ax.plot(*graph,'red')
 ax.set_aspect('equal')
 plt.show()
 ```
-![Unscaled graph](./example_unscaled.png)
+![Unscaled graph](./assets/example_unscaled.png)
 
 You can set the scale to 1:
 ```python
@@ -72,14 +72,14 @@ You can set the scale to 1:
 offset1d.getxy.surf_and_graph(values_on_circle, scale=1)
 ...
 ```
-![Scaled graph 1](./example_scaled_1.png)
+![Scaled graph 1](./assets/example_scaled_1.png)
 The scale is to high for the curve is self-intersecting near the concave parts of the black surface. Smaller scale solves the problem.
 ```python
 ...
 offset1d.getxy.surf_and_graph(values_on_circle, scale=0.2)
 ...
 ```
-![Scaled graph 2](./example_scaled_2.png)
+![Scaled graph 2](./assets/example_scaled_2.png)
 
 
 ## Licence
